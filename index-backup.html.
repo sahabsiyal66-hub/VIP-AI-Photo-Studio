@@ -4,135 +4,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#10101d">
-<title>VIP AI Photo Studio</title>
+<title>VIP AI Photo Studio - Backup</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#10101d;color:#fff;font-family:Arial,sans-serif}
-header{text-align:center;padding:30px 15px;background:linear-gradient(135deg,#19172d,#38214d)}
-.logo{font-size:34px;font-weight:900;color:#f5ce79}
-header p{color:#ddd;font-size:14px}
-.container{max-width:760px;margin:auto;padding:20px}
-h2{color:#f5ce79;font-size:20px}
-.card{background:#1c1b2b;padding:19px;border-radius:16px;margin-bottom:18px;border:1px solid #39344b}
-.upload{border:2px dashed #a58aaf;border-radius:14px;padding:30px 12px;text-align:center;cursor:pointer}
-.upload input{display:none}
-.upload strong{display:block;color:#f5ce79;font-size:19px;margin-bottom:8px}
-#preview{display:none;width:100%;max-height:400px;object-fit:contain;margin-top:15px;border-radius:12px}
-textarea{width:100%;min-height:115px;background:#11111d;color:white;border:1px solid #514663;border-radius:10px;padding:14px;font-size:15px;resize:vertical}
-textarea:focus{outline:1px solid #e8c276}
-.presets{display:flex;flex-wrap:wrap;gap:9px}
-.preset{background:#302940;border:1px solid #69557a;color:white;border-radius:20px;padding:10px 13px;cursor:pointer}
-.preset:active,.preset:hover{background:#76508c}
-button.main{width:100%;padding:15px;border:0;border-radius:10px;background:linear-gradient(90deg,#c99a50,#f5d38b);color:#17111a;font-size:17px;font-weight:bold;cursor:pointer}
-button.clear{background:#393246;color:white;border:0;padding:10px;border-radius:8px;margin-top:10px}
-.note{color:#bbb;font-size:13px;line-height:1.6}
-footer{text-align:center;padding:25px;color:#aaa;font-size:12px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#09091b;color:#fff;line-height:1.6}
+header{background:#11112a;padding:18px 5%;border-bottom:1px solid #b88b35;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{color:#f5c65b;font-size:21px;font-weight:bold}
+nav{display:flex;flex-wrap:wrap;gap:15px}
+nav a,footer a{color:#eee;text-decoration:none;font-size:14px}
+nav a:hover,footer a:hover{color:#f5c65b}
+.hero{text-align:center;padding:65px 18px 40px;background:linear-gradient(140deg,#171735,#09091b)}
+.hero h1{color:#f5c65b;font-size:clamp(30px,6vw,48px)}
+.hero p{color:#ccc;max-width:650px;margin:12px auto}
+.tag{display:inline-block;color:#f5c65b;border:1px solid #b88b35;padding:5px 14px;border-radius:30px;margin-bottom:15px;font-size:13px}
+main{max-width:950px;margin:auto;padding:25px 16px 55px}
+.panel{background:#15152e;border:1px solid #333353;border-radius:16px;padding:24px;margin-bottom:22px}
+h2{color:#f5c65b;margin-bottom:15px;font-size:22px}
+.upload{display:block;border:2px dashed #b88b35;border-radius:12px;padding:25px 15px;text-align:center;cursor:pointer;color:#f5c65b}
+.upload input{display:block;margin:15px auto 0;max-width:100%;color:#fff}
+#preview{display:none;max-width:100%;max-height:380px;object-fit:contain;margin:20px auto 0;border-radius:12px}
+.presets{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:10px}
+.preset{background:#222244;border:1px solid #555577;color:#fff;padding:12px 8px;border-radius:9px;cursor:pointer}
+.preset:hover,.preset.selected{border-color:#f5c65b;color:#f5c65b}
+textarea{width:100%;min-height:120px;padding:14px;border-radius:10px;border:1px solid #555577;background:#0d0d22;color:white;font:inherit;resize:vertical}
+.create{width:100%;margin-top:17px;padding:15px;background:linear-gradient(90deg,#b8862b,#f5d47b);border:0;border-radius:10px;color:#171321;font-size:17px;font-weight:bold;cursor:pointer}
+.note{color:#bbb;font-size:13px;margin-top:12px}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.feature{background:#20203e;border-radius:12px;padding:18px}
+.feature h3{color:#f5c65b;margin-bottom:7px}
+footer{text-align:center;padding:25px 15px;background:#11112a;border-top:1px solid #333353}
+footer p{color:#aaa;margin-bottom:10px}
+footer a{margin:0 7px}
+@media(max-width:600px){header{justify-content:center;text-align:center}nav{justify-content:center}.panel{padding:17px}}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo">✦ VIP AI ✦</div>
-  <h1>PHOTO STUDIO</h1>
-  <p>Your imagination. Your photo. Your style.</p>
+<div class="logo">👑 VIP AI PHOTO STUDIO</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="#editor">Photo Editor</a>
+<a href="about.html">About</a>
+<a href="faq.html">FAQ</a>
+</nav>
 </header>
 
-<main class="container">
-  <section class="card">
-    <h2>📸 1. Upload Your Photo</h2>
-    <label class="upload">
-      <strong>＋ Choose Your Photo</strong>
-      <span>Tap here to upload your original picture</span>
-      <input type="file" id="photo" accept="image/*">
-    </label>
-    <img id="preview" alt="Your uploaded photo">
-    <button class="clear" id="clear" type="button">Remove Photo</button>
-  </section>
+<section class="hero">
+<span class="tag">YOUR PHOTO • YOUR IMAGINATION</span>
+<h1>VIP AI PHOTO STUDIO</h1>
+<p>Upload your photo, describe the edit you imagine, and explore creative photo styles from around the world.</p>
+</section>
 
-  <section class="card">
-    <h2>✨ 2. Choose VIP Style</h2>
-    <div class="presets">
-      <button class="preset" data-prompt="Put me in a luxury black suit in a professional studio.">🤵 Black Suit</button>
-      <button class="preset" data-prompt="Place me beside a luxury sports car in a realistic setting.">🚘 Luxury Car</button>
-      <button class="preset" data-prompt="Place me beside a superbike in a cinematic realistic location.">🏍️ Super Bike</button>
-      <button class="preset" data-prompt="Place me in front of a beautiful luxury house.">🏡 Luxury House</button>
-      <button class="preset" data-prompt="Create a professional wedding photoshoot.">💍 Wedding</button>
-      <button class="preset" data-prompt="Create a beautiful natural mountain travel photoshoot.">🏔️ Travel</button>
-      <button class="preset" data-prompt="Give me traditional Pakistani clothing.">🇵🇰 Pakistani Dress</button>
-      <button class="preset" data-prompt="Create a professional luxury fashion photoshoot.">👑 VIP Fashion</button>
-    </div>
-  </section>
+<main>
+<section class="panel" id="editor">
+<h2>📸 Upload Your Photo</h2>
+<label class="upload">
+Choose your photo
+<input type="file" id="photo" accept="image/*">
+</label>
+<img id="preview" alt="Your selected photo preview">
+<p class="note">Your selected photo is previewed in this browser demo.</p>
+</section>
 
-  <section class="card">
-    <h2>✍️ 3. Describe Your Editing</h2>
-    <textarea id="prompt" placeholder="Write anything you want... Example: Put me in a black suit, standing beside a luxury car in Dubai at sunset. Keep my original face and identity."></textarea>
-    <p class="note">You can describe clothes, cars, bikes, houses, locations, backgrounds and any other creative idea.</p>
-  </section>
+<section class="panel">
+<h2>✨ Choose a Style</h2>
+<div class="presets">
+<button class="preset" type="button">Black Suit</button>
+<button class="preset" type="button">Luxury Car</button>
+<button class="preset" type="button">Super Bike</button>
+<button class="preset" type="button">Luxury House</button>
+<button class="preset" type="button">Wedding</button>
+<button class="preset" type="button">Travel</button>
+<button class="preset" type="button">Pakistani Dress</button>
+<button class="preset" type="button">VIP Fashion</button>
+<button class="preset" type="button">Arabic Style</button>
+<button class="preset" type="button">Turkish Style</button>
+<button class="preset" type="button">Studio Portrait</button>
+<button class="preset" type="button">Beach</button>
+</div>
+</section>
 
-  <section class="card">
-    <h2>🎨 4. Your Photo Settings</h2>
-    <p>Our editing goal:</p>
-    <p>✓ Preserve original face and identity as much as possible</p>
-    <p>✓ Natural lighting and realistic details</p>
-    <p>✓ Professional VIP photography look</p>
-    <p>✓ High-quality output</p>
-  </section>
+<section class="panel">
+<h2>🪄 Describe Your Dream Edit</h2>
+<textarea id="prompt" placeholder="Write anything you want... For example: Put me in a beautiful Turkish outfit, standing beside a luxury car in Istanbul."></textarea>
+<button class="create" id="createBtn" type="button">✨ CREATE MY PHOTO</button>
+<p class="note" id="message">Real AI editing will be available after connecting an AI service and secure backend.</p>
+</section>
 
-  <button class="main" id="generate">✦ CREATE MY VIP PHOTO ✦</button>
-  <p class="note" style="text-align:center;margin-top:15px">
-    Your photo is only previewed in this demo. AI editing will work after connecting the image generation service.
-  </p>
+<section class="panel">
+<h2>👑 Studio Features</h2>
+<div class="features">
+<div class="feature"><h3>🌍 Worldwide Styles</h3><p>Explore outfits, traditions and locations from different countries.</p></div>
+<div class="feature"><h3>🎨 Your Imagination</h3><p>Describe your own creative ideas in your own words.</p></div>
+<div class="feature"><h3>📱 Mobile Friendly</h3><p>Designed for phones and computers.</p></div>
+</div>
+</section>
 </main>
 
 <footer>
-  © 2026 VIP AI Photo Studio<br>
-  Create Your Own Style ✨
+<p>👑 VIP AI PHOTO STUDIO</p>
+<a href="about.html">About</a>
+<a href="privacy.html">Privacy</a>
+<a href="faq.html">FAQ</a>
+<a href="terms.html">Terms</a>
+<p>© 2026 VIP AI Photo Studio</p>
 </footer>
 
 <script>
-const photo = document.getElementById('photo');
-const preview = document.getElementById('preview');
-const prompt = document.getElementById('prompt');
+const photoInput=document.getElementById("photo");
+const preview=document.getElementById("preview");
+const promptBox=document.getElementById("prompt");
 
-photo.addEventListener('change', function(){
-  const file = this.files[0];
-  if(!file) return;
-
-  if(!file.type.startsWith('image/')){
-    alert('Please select an image.');
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.onload = function(e){
-    preview.src = e.target.result;
-    preview.style.display = 'block';
-  };
-  reader.readAsDataURL(file);
+photoInput.addEventListener("change",function(){
+const file=this.files[0];
+if(!file)return;
+if(!file.type.startsWith("image/")){
+alert("Please choose an image file.");
+this.value="";
+return;
+}
+const reader=new FileReader();
+reader.onload=function(event){
+preview.src=event.target.result;
+preview.style.display="block";
+};
+reader.readAsDataURL(file);
 });
 
-document.getElementById('clear').addEventListener('click',function(){
-  photo.value = '';
-  preview.src = '';
-  preview.style.display = 'none';
+document.querySelectorAll(".preset").forEach(function(button){
+button.addEventListener("click",function(){
+document.querySelectorAll(".preset").forEach(function(item){
+item.classList.remove("selected");
+});
+this.classList.add("selected");
+if(!promptBox.value.trim()){
+promptBox.value="Please edit my photo in "+this.textContent+" style.";
+}
+});
 });
 
-document.querySelectorAll('.preset').forEach(button=>{
-  button.addEventListener('click',()=>{
-    prompt.value = button.dataset.prompt;
-  });
-});
-
-document.getElementById('generate').addEventListener('click',()=>{
-  if(!photo.files.length){
-    alert('Please upload your photo first.');
-    return;
-  }
-  if(!prompt.value.trim()){
-    alert('Please describe the editing you want.');
-    return;
-  }
-  alert('Your photo and editing instructions are ready! The AI editing service still needs to be connected before a finished edited photo can be generated.');
+document.getElementById("createBtn").addEventListener("click",function(){
+if(!photoInput.files.length){
+alert("Please upload your photo first.");
+return;
+}
+if(!promptBox.value.trim()){
+alert("Please describe the photo edit you want.");
+return;
+}
+alert("Your photo and editing instructions are ready. Real AI editing is not connected yet.");
 });
 </script>
 </body>
